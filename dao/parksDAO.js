@@ -57,12 +57,12 @@ export default class ParksDAO {
         }
     }
 
-    static async getParkByID(id) {
+    static async getParkByID(parkId) {
         try {
             return await parks.aggregate([
                 {
                     $match: {
-                        _id: new ObjectId(id),
+                        _id: new ObjectId(parkId),
                     }
                 }
             ]).next();

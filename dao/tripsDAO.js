@@ -17,14 +17,34 @@ export default class TripsDAO {
     }
 
     static async getTrips(userId) {
-        // TODO
+        let cursor;
+        try {
+            cursor = await trips.find({
+                _id: userId
+            });
+        } 
+        catch(e) {
+            console.error(`Unable to get trips: ${e}`);
+            throw e;
+        }
     }
 
-    static async updateTrip(id) {
-        // TODO
+    static async updateTrip(userId, trips) {
+        try {
+            const updateResponse = await trips.updateOne(
+                {_id: userId},
+                {$set: {trips: trips}},
+                {upsert: true}
+            )
+            return updateResponse;
+        }
+        catch(e) {
+            console.error(`Unable to udpate trips: ${e}`);
+            return {error: e};
+        }
     }
 
-    static async deleteTrip(id) {
+    static async deleteTrip(userId, trips, tripId) {
         // TODO
     }
 }
