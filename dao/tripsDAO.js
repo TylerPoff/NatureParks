@@ -22,6 +22,8 @@ export default class TripsDAO {
             cursor = await trips.find({
                 _id: userId
             });
+            const myTrips = await cursor.toArray();
+            return myTrips[0];
         } 
         catch(e) {
             console.error(`Unable to get trips: ${e}`);
@@ -44,7 +46,7 @@ export default class TripsDAO {
         }
     }
 
-    static async deleteTrip(userId, trips, tripId) {
+    static async deleteTrip(userId, tripId) {
         // TODO
     }
 }

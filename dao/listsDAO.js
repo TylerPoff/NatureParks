@@ -17,11 +17,33 @@ export default class ListDAO {
     }
 
     static async getLists(userId) {
-        // TODO
+        let cursor;
+        try {
+            cursor = await lists.find({
+               _id: userId 
+            });
+            const myLists = await cursor.toArray(0);
+            return myLists[0];
+        }
+        catch(e) {
+            console.log(`Could not get lists: ${e}`);
+            throw e;
+        }
     }
 
     static async updateList(id) {
-        // TODO
+        try {
+            const updateResponse = await lists.updateOne(
+                {_id: userId},
+                {$set: {lists: lists}},
+                {upsert: true}
+            )
+            return updateResponse;
+        }
+        catch(e) {
+            console.error(`Unable to update lists: ${e}`);
+            return {error: e};
+        }
     }
 
     static async deleteList(id) {
