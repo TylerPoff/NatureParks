@@ -2,7 +2,7 @@ import mongodb from 'mongodb';
 
 let lists;
 
-export default class ListDAO {
+export default class ListsDAO {
     static async injectDB(conn) {
         if(lists) {
             return;

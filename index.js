@@ -9,7 +9,7 @@ async function main() {
     dotenv.config();
 
     const client = new mongodb.MongoClient(
-        proecss.env.PARKS_DB_URI
+        process.env.PARKS_DB_URI
     );
     const port = process.env.PORT || 8000;
 
