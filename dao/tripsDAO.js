@@ -47,6 +47,34 @@ export default class TripsDAO {
     }
 
     static async deleteTrip(userId, tripId) {
-        // TODO
+        const user = await trips.findOne({
+            _id: userId
+        });
+
+        if(!user) {
+            console.error(`Unable to locate user for this trip: ${e}`);
+            return {error: e};
+        }
+
+        const tripIndex = user.trips.findIndex((trip) => trip._id.equals(new ObjectId(tripId)));
+
+        if(tripIndex === -1) {
+            console.error(`Could not find this list for this user: ${e}`);
+            return {error: e};
+        }
+
+        user.trips.splice(tripIndex, 1);
+
+        try {
+            const deleteResponse = await trips.updateOne(
+                {_id: new ObjectId(userId)},
+                {$set: {trips: user.trips}}
+            )
+            return deleteResponse;
+        }
+        catch(e) {
+            console.error(`Unable to delete trip: ${e}`);
+            return {error: e};
+        }
     }
 }

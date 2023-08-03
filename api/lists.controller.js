@@ -19,10 +19,38 @@ export default class ListsController {
     }
 
     static async apiUpdateList(req, res, next) {
-        // TODO
+        try {
+            const response = await ListDAO.updateList(
+                req.body._id,
+                req.body.lists
+            )
+
+            var{error} = response;
+            if(error) {
+                res.status(500).json({error});
+            }
+            res.json({status: "success"});
+        }
+        catch(e) {
+            res.status(500).json({error: e.message});
+        }
     }
 
     static async apiDeleteList(req, res, next) {
-        // TODO
+        try {
+            const userId = req.body._id;
+            const listId = req.body.listId; // TODO route correctly
+    
+            const response = await ListsDAO.deleteList(userId, listId);
+    
+            var{error} = response;
+            if(error) {
+                res.status(500).json({error});
+            }
+            res.json({status: "success"});
+        }
+        catch(e) {
+            res.status(500).json({error: e.message});
+        }
     }
 }
