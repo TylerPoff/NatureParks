@@ -1,2 +1,4 @@
-TeamLT backend README
+LT backend
+
+Author: Tyler Poff
 
