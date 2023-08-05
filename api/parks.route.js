@@ -5,9 +5,9 @@ import ParksController from './parks.controller.js';
 
 const router = express.Router();
 
-router.route('/parklist').get(ParksController.apiGetParks);
-router.route('/parklist/:id').get(ParksController.apiGetParkByID);
-router.route('/parklist/states').get(ParksController.apiGetStates);
+router.route('/parks').get(ParksController.apiGetParks);
+router.route('/parks/:id').get(ParksController.apiGetParkByID);
+router.route('/parks/states').get(ParksController.apiGetStates);
 
 router.route('/trips').get(TripsController.apiGetTrips);
 router.route('/trips').put(TripsController.apiUpdateTrip);
