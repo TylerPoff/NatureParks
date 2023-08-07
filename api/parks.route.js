@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.route('/parks').get(ParksController.apiGetParks);
 router.route('/parks/:id').get(ParksController.apiGetParkByID);
-router.route('/parks/states').get(ParksController.apiGetStates);
+router.route('/states').get(ParksController.apiGetStates);
 
 router.route('/trips').get(TripsController.apiGetTrips);
 router.route('/trips').put(TripsController.apiUpdateTrip);
