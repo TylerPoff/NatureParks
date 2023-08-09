@@ -11,6 +11,9 @@ export default class ParksController {
         if (req.query.state) {
             filters.state = req.query.state;
         }
+        else if(req.query.name) {
+            filters.name = req.query.name;
+        }
 
         const { parksList, totalNumParks} = await
             ParksDAO.getParks({ filters, page, parksPerPage });

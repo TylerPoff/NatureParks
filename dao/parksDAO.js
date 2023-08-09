@@ -11,6 +11,7 @@ export default class ParksDAO {
         try {
             parks = await conn.db(
                 process.env.PARKS_COLLECTION).collection('parks');
+                await parks.createIndex({ name: 'text'});
         }
         catch(e) {
             console.error(`Unable to connect to parksDAO: ${e}`);

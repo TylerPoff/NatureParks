@@ -6,7 +6,7 @@ import ParksController from './parks.controller.js';
 const router = express.Router();
 
 router.route('/parks').get(ParksController.apiGetParks);
-router.route('/parks/:id').get(ParksController.apiGetParkByID);
+router.route('/parks/id/:id').get(ParksController.apiGetParkByID);
 router.route('/states').get(ParksController.apiGetStates);
 
 router.route('/trips').get(TripsController.apiGetTrips);
