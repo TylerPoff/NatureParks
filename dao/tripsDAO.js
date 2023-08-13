@@ -35,7 +35,7 @@ export default class TripsDAO {
         try {
             const updateResponse = await tripsCollection.updateOne(
                 {_id: userId},
-                {$set: {trips: trips}},
+                {$push: {trips: trips}},
                 {upsert: true}
             )
             return updateResponse;
