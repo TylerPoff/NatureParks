@@ -1,15 +1,15 @@
 import mongodb from 'mongodb';
 
-let trips;
+let tripsCollection;
 
 export default class TripsDAO {
     static async injectDB(conn) {
-        if(trips) {
+        if(tripsCollection) {
             return;
         }
         try {
-            trips = await conn.db(
-                process.env.PARKS_COLLECTION).collection('trips');
+            tripsCollection = await conn.db(process.env.PARKS_COLLECTION)
+                .collection('trips');
         }
         catch(e) {
             console.error(`Unable to connect to tripsDAO: ${e}`);
@@ -33,7 +33,7 @@ export default class TripsDAO {
 
     static async updateTrip(userId, trips) {
         try {
-            const updateResponse = await trips.updateOne(
+            const updateResponse = await tripsCollection.updateOne(
                 {_id: userId},
                 {$set: {trips: trips}},
                 {upsert: true}
