@@ -19,7 +19,7 @@ export default class TripsDAO {
     static async getTrips(userId) {
         let cursor;
         try {
-            cursor = await trips.find({
+            cursor = await tripsCollection.find({
                 _id: userId
             });
             const myTrips = await cursor.toArray();
@@ -47,7 +47,7 @@ export default class TripsDAO {
     }
 
     static async deleteTrip(userId, tripId) {
-        const user = await trips.findOne({
+        const user = await tripsCollection.findOne({
             _id: userId
         });
 
@@ -66,7 +66,7 @@ export default class TripsDAO {
         user.trips.splice(tripIndex, 1);
 
         try {
-            const deleteResponse = await trips.updateOne(
+            const deleteResponse = await tripsCollection.updateOne(
                 {_id: new ObjectId(userId)},
                 {$set: {trips: user.trips}}
             )
