@@ -38,8 +38,8 @@ export default class TripsController {
 
     static async apiDeleteTrip(req, res, next) {
         try {
-            const userId = req.body._id;
-            const tripId = req.body.tripId; // TODO route correctly
+            const userId = req.params._id;
+            const tripId = req.params.tripId;
     
             const response = await TripsDAO.deleteTrip(userId, tripId);
     
