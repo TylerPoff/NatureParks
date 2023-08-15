@@ -9,7 +9,7 @@ router.route('/parks').get(ParksController.apiGetParks);
 router.route('/parks/id/:id').get(ParksController.apiGetParkByID);
 router.route('/states').get(ParksController.apiGetStates);
 
-router.route('/trips').get(TripsController.apiGetTrips);
+router.route('/trips/:userId').get(TripsController.apiGetTrips);
 router.route('/trips').put(TripsController.apiUpdateTrip);
 router.route('/trips').delete(TripsController.apiDeleteTrip);
 
