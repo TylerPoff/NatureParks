@@ -13,7 +13,7 @@ router.route('/trips/:userId').get(TripsController.apiGetTrips);
 router.route('/trips').put(TripsController.apiUpdateTrip);
 router.route('/trips/:userId/:tripId').delete(TripsController.apiDeleteTrip);
 
-router.route('/lists').get(ListsController.apiGetLists);
+router.route('/lists/:userId').get(ListsController.apiGetLists);
 router.route('/lists').put(ListsController.apiUpdateList);
 router.route('/lists').delete(ListsController.apiDeleteList);
 
