@@ -51,4 +51,20 @@ export default class ListsController {
             res.status(500).json({error: e.message});
         }
     }
+
+    static async apiDeleteListItem(req, res, next) {
+        try {
+            let userId = req.params.userId;
+            let index = req.params.index;
+            let response = await ListsDAO.deleteListItem(userId, index);
+
+            var{error} = response;
+            if(error) {
+                res.status(500).json({error});
+            }
+            res.json({status: "success"});
+        } catch(e) {
+            res.status(500).json({error: e.message});
+        }
+    }
 }

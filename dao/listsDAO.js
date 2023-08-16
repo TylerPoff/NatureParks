@@ -55,5 +55,23 @@ export default class ListsDAO {
             console.error(`Unable to delete list: ${e}`);
             return {error: e};
         }
-    }   
+    }
+    
+    static async deleteListItem(userId, index) {
+        try {
+            const myList = await this.getLists(userId);
+
+            myList.list.splice(index, 1);
+    
+            const updateResponse = await listsCollection.updateOne(
+                {_id: userId},
+                {$set: {list: myList.list}}
+            );
+    
+            return updateResponse;
+        } catch(e) {
+            console.error(`Unable to delete list item: ${e}`);
+            return {error: e};
+        }
+    }
 }

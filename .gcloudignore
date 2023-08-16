@@ -13,7 +13,6 @@
 .git
 .gitignore
 .env
-app.yaml
 
 # Node.js dependencies:
 node_modules/
