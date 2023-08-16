@@ -17,9 +17,13 @@ export default class ListsDAO {
     }
 
     static async getLists(userId) {
-
+        let cursor;
         try {
-        
+            cursor = await listsCollection.find({
+                _id: userId
+            });
+            const myList = await cursor.toArray();
+            return myList[0];
         }
         catch(e) {
             console.log(`Could not get lists: ${e}`);

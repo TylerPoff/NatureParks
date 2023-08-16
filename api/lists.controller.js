@@ -4,7 +4,13 @@ export default class ListsController {
 
     static async apiGetLists(req, res, next) {
         try {
-           
+           let userId = req.params.userId;
+           let list = await ListsDAO.getLists(userId);
+           if(!list) {
+            res.status(404).json({error: "list not found"});
+            return;
+           }
+           res.json(list);
         }
         catch(e) {
             console.log(`API, ${e}`);
