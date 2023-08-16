@@ -11,7 +11,7 @@ router.route('/states').get(ParksController.apiGetStates);
 
 router.route('/trips/:userId').get(TripsController.apiGetTrips);
 router.route('/trips').put(TripsController.apiUpdateTrip);
-router.route('/trips/:tripId').delete(TripsController.apiDeleteTrip);
+router.route('/trips/:userId/:tripId').delete(TripsController.apiDeleteTrip);
 
 router.route('/lists').get(ListsController.apiGetLists);
 router.route('/lists').put(ListsController.apiUpdateList);
