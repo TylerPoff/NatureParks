@@ -46,9 +46,10 @@ export default class ListsDAO {
         }
     }
 
-    static async deleteList(userId, listId) {
+    static async deleteList(userId) {
         try {
-        
+            const deleteResponse = await listsCollection.deleteOne({ _id: userId});
+            return deleteResponse;
         }
         catch(e) {
             console.error(`Unable to delete list: ${e}`);

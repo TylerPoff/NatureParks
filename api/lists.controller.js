@@ -38,7 +38,14 @@ export default class ListsController {
 
     static async apiDeleteList(req, res, next) {
         try {
-           
+           let userId = req.params.userId;
+           let response = await ListsDAO.deleteList(userId);
+
+           var{error}=response;
+           if(error) {
+            res.status(500).json({error});
+           }
+           res.json({status: "success"});
         }
         catch(e) {
             res.status(500).json({error: e.message});
